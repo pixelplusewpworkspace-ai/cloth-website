@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YOUNGLA | Premium Aesthetic Wear</title>
+    <meta name="description" content="Premium fitness and lifestyle apparel for the driven.">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <!-- Tailwind CSS (CDN for No-Node Setup) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            black: '#0a0a0a',
+                            dark: '#121212',
+                            gray: '#2a2a2a',
+                            white: '#ffffff',
+                            accent: '#C92A2A', // Muted red for accent
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+                        display: ['"Oswald"', 'sans-serif'],
+                    },
+                    backgroundImage: {
+                        'hero-pattern': "linear-gradient(to right bottom, rgba(10,10,10,0.9), rgba(10,10,10,0.7)), url('https://images.unsplash.com/photo-1583743814966-8936f5b7be1a?q=80&w=2574&auto=format&fit=crop')",
+                    }
+                }
+            }
+        }
+    </script>
+
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body
+    class="bg-brand-black text-brand-white antialiased overflow-x-hidden selection:bg-brand-accent selection:text-white">
+
+    <!-- Navigation -->
+    <nav class="fixed w-full z-50 bg-brand-black/90 backdrop-blur-md border-b border-white/5 transition-all duration-300"
+        id="navbar">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <!-- Mobile Menu Button -->
+                <div class="flex md:hidden">
+                    <button id="mobile-menu-btn" class="text-white hover:text-gray-300 focus:outline-none">
+                        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M4 6h16M4 12h16M4 18h16" />
+                        </svg>
+                    </button>
+                </div>
+
+                <!-- Logo -->
+                <div
+                    class="flex-shrink-0 flex items-center justify-center md:justify-start w-full md:w-auto absolute md:relative left-0 pointer-events-none md:pointer-events-auto">
+                    <a href="index.html" class="pointer-events-auto">
+                        <span class="font-display font-bold text-3xl tracking-widest text-white italic">YOUNGLA</span>
+                    </a>
+                </div>
+
+                <!-- Desktop Menu -->
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-baseline space-x-8">
+                        <a href="index.html"
+                            class="hover-underline-animation px-3 py-2 text-sm font-medium tracking-wide">HOME</a>
+                        <a href="shop.html"
+                            class="hover-underline-animation px-3 py-2 text-sm font-medium tracking-wide text-gray-300 hover:text-white">SHOP</a>
+                        <a href="#collections"
+                            class="hover-underline-animation px-3 py-2 text-sm font-medium tracking-wide text-gray-300 hover:text-white">COLLECTIONS</a>
+                        <a href="about.html"
+                            class="hover-underline-animation px-3 py-2 text-sm font-medium tracking-wide text-gray-300 hover:text-white">ABOUT</a>
+                    </div>
+                </div>
+
+                <!-- Icons -->
+                <div class="flex items-center space-x-6">
+                    <button class="text-gray-300 hover:text-white transition-colors">
+                        <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                        </svg>
+                    </button>
+                    <button class="text-gray-300 hover:text-white transition-colors relative" id="cart-btn">
+                        <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
+                        </svg>
+                        <span id="cart-count"
+                            class="absolute -top-1 -right-1 bg-brand-accent text-[10px] font-bold h-4 w-4 rounded-full flex items-center justify-center hidden">0</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Menu Panel -->
+        <div id="mobile-menu"
+            class="fixed inset-0 z-40 bg-brand-black transform -translate-x-full transition-transform duration-300 ease-in-out md:hidden flex flex-col pt-24 px-6">
+            <button id="close-menu-btn" class="absolute top-6 right-6 text-white p-2">
+                <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                </svg>
+            </button>
+            <a href="index.html"
+                class="text-2xl font-display font-medium text-white py-4 border-b border-white/10">HOME</a>
+            <a href="shop.html"
+                class="text-2xl font-display font-medium text-gray-400 py-4 border-b border-white/10">SHOP</a>
+            <a href="#collections"
+                class="text-2xl font-display font-medium text-gray-400 py-4 border-b border-white/10">COLLECTIONS</a>
+            <a href="about.html"
+                class="text-2xl font-display font-medium text-gray-400 py-4 border-b border-white/10">ABOUT</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="relative h-screen flex items-center justify-center overflow-hidden">
+        <!-- Background Image/Video Placeholder -->
+        <div class="absolute inset-0 z-0">
+            <!-- Using a high quality Unsplash image as placeholder for 'Gym aesthetics' since generation failed. 
+                  It's better to have a real looking placeholder than a gray box for 'Premium' feel. -->
+            <img src="https://images.unsplash.com/photo-1517849845537-4d257902454a?q=80&w=2000&auto=format&fit=crop"
+                class="w-full h-full object-cover opacity-60" alt="Youngla Hero Background">
+            <div class="absolute inset-0 bg-gradient-to-t from-brand-black via-brand-black/40 to-transparent"></div>
+        </div>
+
+        <div class="relative z-10 text-center px-4 max-w-5xl mx-auto">
+            <p class="text-sm md:text-base tracking-[0.3em] font-medium text-gray-300 mb-6 fade-in-up">EST. 2024</p>
+            <h1
+                class="text-5xl md:text-7xl lg:text-9xl font-display font-bold mb-8 uppercase italic tracking-tighter fade-in-up delay-100">
+                Redefine <span class="text-outline">Yourself</span>
+            </h1>
+            <p class="text-gray-300 max-w-xl mx-auto text-lg mb-10 font-light fade-in-up delay-200">
+                Premium aesthetic wear designed for the modern athlete. Bridging the gap between performance and
+                lifestyle.
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center items-center fade-in-up delay-300">
+                <a href="shop.html"
+                    class="bg-white text-black px-8 py-3.5 font-bold uppercase tracking-wide hover:bg-gray-200 transition-colors w-full sm:w-auto">
+                    Shop Latest
+                </a>
+                <a href="#collections"
+                    class="border border-white/30 text-white px-8 py-3.5 font-bold uppercase tracking-wide hover:bg-white/10 backdrop-blur-sm transition-colors w-full sm:w-auto">
+                    View Lookbook
+                </a>
+            </div>
+        </div>
+
+        <!-- Scroll Indicator -->
+        <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce hidden md:block">
+            <svg class="w-6 h-6 text-white/50" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3">
+                </path>
+            </svg>
+        </div>
+    </header>
+
+    <!-- Trending Section -->
+    <section class="py-24 bg-brand-black">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-end mb-12">
+                <div>
+                    <h2 class="text-3xl md:text-5xl font-display font-bold uppercase italic tracking-tight">Trending Now
+                    </h2>
+                </div>
+                <a href="shop.html"
+                    class="hidden md:flex items-center text-sm font-bold uppercase tracking-wide border-b border-white pb-1 hover:text-gray-300 transition-colors">
+                    View All
+                    <svg class="ml-2 w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                    </svg>
+                </a>
+            </div>
+
+            <!-- Product Grid -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-6 gap-y-12">
+                <!-- Product 1 -->
+                <div class="group cursor-pointer">
+                    <div class="relative overflow-hidden aspect-[3/4] bg-brand-gray mb-4">
+                        <img src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?q=80&w=1000&auto=format&fit=crop"
+                            alt="Oversized Tee"
+                            class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
+                        <div
+                            class="absolute top-4 left-4 bg-brand-accent text-white text-xs font-bold px-2 py-1 uppercase tracking-wider">
+                            New</div>
+                        <button
+                            class="absolute bottom-0 left-0 right-0 bg-white text-black py-4 font-bold uppercase tracking-wider transform translate-y-full group-hover:translate-y-0 transition-transform duration-300 btn-add-cart"
+                            data-id="1" data-name="Immortal Oversized Tee" data-price="45.00"
+                            data-image="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?q=80&w=1000&auto=format&fit=crop">
+                            Add to Cart
+                        </button>
+                    </div>
+                    <h3 class="font-bold text-lg leading-none mb-1 group-hover:text-gray-300 transition-colors">Immortal
+                        Oversized Tee</h3>
+                    <p class="text-gray-400 text-sm mb-2">Jet Black</p>
+                    <p class="font-medium">$45.00</p>
+                </div>
+
+                <!-- Product 2 -->
+                <div class="group cursor-pointer">
+                    <div class="relative overflow-hidden aspect-[3/4] bg-brand-gray mb-4">
+                        <img src="https://images.unsplash.com/photo-1583743814966-8936f5b7be1a?q=80&w=1000&auto=format&fit=crop"
+                            alt="Camo Joggers"
+                            class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
+                        <button
+                            class="absolute bottom-0 left-0 right-0 bg-white text-black py-4 font-bold uppercase tracking-wider transform translate-y-full group-hover:translate-y-0 transition-transform duration-300 btn-add-cart"
+                            data-id="2" data-name="Tactical Cargo Jogger" data-price="68.00"
+                            data-image="https://images.unsplash.com/photo-1583743814966-8936f5b7be1a?q=80&w=1000&auto=format&fit=crop">
+                            Add to Cart
+                        </button>
+                    </div>
+                    <h3 class="font-bold text-lg leading-none mb-1 group-hover:text-gray-300 transition-colors">Tactical
+                        Cargo Jogger</h3>
+                    <p class="text-gray-400 text-sm mb-2">Dark Olive</p>
+                    <p class="font-medium">$68.00</p>
+                </div>
+
+                <!-- Product 3 -->
+                <div class="group cursor-pointer">
+                    <div class="relative overflow-hidden aspect-[3/4] bg-brand-gray mb-4">
+                        <img src="https://images.unsplash.com/photo-1562157873-818bc0726f68?q=80&w=1000&auto=format&fit=crop"
+                            alt="Signature Hoodie"
+                            class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
+                        <button
+                            class="absolute bottom-0 left-0 right-0 bg-white text-black py-4 font-bold uppercase tracking-wider transform translate-y-full group-hover:translate-y-0 transition-transform duration-300 btn-add-cart"
+                            data-id="3" data-name="Signature Heavy Hoodie" data-price="75.00"
+                            data-image="https://images.unsplash.com/photo-1562157873-818bc0726f68?q=80&w=1000&auto=format&fit=crop">
+                            Add to Cart
+                        </button>
+                    </div>
+                    <h3 class="font-bold text-lg leading-none mb-1 group-hover:text-gray-300 transition-colors">
+                        Signature Heavy Hoodie</h3>
+                    <p class="text-gray-400 text-sm mb-2">Charcoal</p>
+                    <p class="font-medium">$75.00</p>
+                </div>
+
+                <!-- Product 4 -->
+                <div class="group cursor-pointer">
+                    <div class="relative overflow-hidden aspect-[3/4] bg-brand-gray mb-4">
+                        <img src="https://images.unsplash.com/photo-1576566588028-4147f3842f27?q=80&w=1000&auto=format&fit=crop"
+                            alt="Performance Stringer"
+                            class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
+                        <div
+                            class="absolute top-4 left-4 bg-white text-black text-xs font-bold px-2 py-1 uppercase tracking-wider">
+                            Best Seller</div>
+                        <button
+                            class="absolute bottom-0 left-0 right-0 bg-white text-black py-4 font-bold uppercase tracking-wider transform translate-y-full group-hover:translate-y-0 transition-transform duration-300 btn-add-cart"
+                            data-id="4" data-name="Icon Stringer" data-price="32.00"
+                            data-image="https://images.unsplash.com/photo-1576566588028-4147f3842f27?q=80&w=1000&auto=format&fit=crop">
+                            Add to Cart
+                        </button>
+                    </div>
+                    <h3 class="font-bold text-lg leading-none mb-1 group-hover:text-gray-300 transition-colors">Icon
+                        Stringer</h3>
+                    <p class="text-gray-400 text-sm mb-2">White</p>
+                    <p class="font-medium">$32.00</p>
+                </div>
+            </div>
+
+            <div class="mt-12 text-center md:hidden">
+                <a href="shop.html"
+                    class="inline-flex items-center text-sm font-bold uppercase tracking-wide border-b border-white pb-1">
+                    View All Products
+                    <svg class="ml-2 w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                    </svg>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Collections Banner -->
+    <section id="collections" class="py-24 bg-brand-dark relative overflow-hidden">
+        <div
+            class="absolute inset-0 opacity-20 bg-[url('https://images.unsplash.com/photo-1534438327276-14e5300c3a48?q=80&w=2000')] bg-cover bg-center bg-fixed mix-blend-overlay">
+        </div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                <div class="order-2 md:order-1">
+                    <h2 class="text-4xl md:text-6xl font-display font-bold uppercase italic tracking-tighter mb-6">
+                        Classics<br>Reinvented</h2>
+                    <p class="text-gray-300 text-lg mb-8 max-w-md">Our core collection features timeless cuts with
+                        modern performance fabrics. Built to withstand your toughest workouts while keeping you
+                        street-ready.</p>
+                    <a href="shop.html"
+                        class="bg-white text-black px-8 py-3.5 font-bold uppercase tracking-wide hover:bg-gray-200 transition-colors inline-block">
+                        Explore Collection
+                    </a>
+                </div>
+                <div class="order-1 md:order-2 relative aspect-square">
+                    <img src="https://images.unsplash.com/photo-1517466787929-bc90951d6dbb?q=80&w=1000&auto=format&fit=crop"
+                        class="w-full h-full object-cover shadow-2xl" alt="Collection Image">
+                    <div
+                        class="absolute -bottom-6 -left-6 border-2 border-white/20 w-full h-full -z-10 hidden md:block">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-black pt-24 pb-12 border-t border-white/5">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
+                <div>
+                    <span
+                        class="font-display font-bold text-2xl tracking-widest text-white italic block mb-6">YOUNGLA</span>
+                    <p class="text-gray-500 text-sm leading-relaxed">
+                        Elevating the standard of fitness apparel. Designed in California, worn worldwide.
+                    </p>
+                </div>
+                <div>
+                    <h4 class="font-bold uppercase tracking-wider mb-6 text-sm">Shop</h4>
+                    <ul class="space-y-4 text-gray-500 text-sm">
+                        <li><a href="#" class="hover:text-white transition-colors">New Releases</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Men's</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Women's</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Accessories</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold uppercase tracking-wider mb-6 text-sm">Support</h4>
+                    <ul class="space-y-4 text-gray-500 text-sm">
+                        <li><a href="#" class="hover:text-white transition-colors">Help Center</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Returns & Exchanges</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Shipping Info</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Contact Us</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold uppercase tracking-wider mb-6 text-sm">Stay in the loop</h4>
+                    <p class="text-gray-500 text-sm mb-4">Subscribe for exclusive drops and early access.</p>
+                    <form class="flex border-b border-white/20 pb-2">
+                        <input type="email" placeholder="Enter your email"
+                            class="bg-transparent w-full outline-none text-white placeholder-gray-600">
+                        <button type="submit"
+                            class="text-white font-bold uppercase text-xs hover:text-gray-300">Join</button>
+                    </form>
+                </div>
+            </div>
+            <div
+                class="flex flex-col md:flex-row justify-between items-center pt-8 border-t border-white/5 text-gray-600 text-xs">
+                <p>&copy; 2026 Youngla Clone. All Rights Reserved.</p>
+                <div class="flex space-x-6 mt-4 md:mt-0">
+                    <a href="#" class="hover:text-white">Instagram</a>
+                    <a href="#" class="hover:text-white">Twitter</a>
+                    <a href="#" class="hover:text-white">TikTok</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Cart Sidebar Overlay (Hidden by default) -->
+    <div id="cart-sidebar" class="fixed inset-0 z-50 pointer-events-none">
+        <div id="cart-backdrop" class="absolute inset-0 bg-black/50 opacity-0 transition-opacity duration-300 ease-out">
+        </div>
+        <div id="cart-panel"
+            class="absolute top-0 right-0 h-full w-full max-w-md bg-brand-dark shadow-2xl transform translate-x-full transition-transform duration-300 ease-in-out pointer-events-auto flex flex-col">
+            <div class="p-6 border-b border-white/10 flex justify-between items-center">
+                <h2 class="font-display text-2xl font-bold uppercase italic">Your Cart (<span
+                        id="cart-count-header">0</span>)</h2>
+                <button id="close-cart" class="text-gray-400 hover:text-white">
+                    <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                </button>
+            </div>
+            <div id="cart-items" class="flex-1 overflow-y-auto p-6 space-y-6">
+                <!-- Cart items will be injected here -->
+                <p class="text-gray-500 text-center mt-10">Your cart is empty.</p>
+            </div>
+            <div class="p-6 border-t border-white/10 bg-brand-black/50">
+                <div class="flex justify-between items-center mb-4">
+                    <span class="text-gray-400">Subtotal</span>
+                    <span class="font-bold text-xl" id="cart-subtotal">$0.00</span>
+                </div>
+                <button
+                    class="w-full bg-white text-black py-4 font-bold uppercase tracking-wider hover:bg-gray-200 transition-colors">
+                    Checkout
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Script -->
+    <script src="app.js"></script>
+</body>
+
+</html>
